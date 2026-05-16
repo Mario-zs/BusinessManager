@@ -105,6 +105,8 @@ export function importarDatos(){
         } catch (error) {
             mostrarMensaje("Error al importar datos. El archivo no es válido", "error");
             console.error("Error al importar datos", error);
+        } finally {
+            input.value = "";
         }
     };
 
