@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ea">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="007bff">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="resources/icon-32.png">
+    <title>Business Manager</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-left">
+            <button id="btnMenu" class="menu-btn">☰</button>
+            <h1 id="headerTittle">Panel principal</h1>
+        </div>
+    </header>
+
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <nav>
+                <ul>
+                    <li><a href="#">Principal</a></li>
+                    <li><a href="#">Productos</a></li>
+                    <li><a href="#">Ventas</a></li>
+                    <li><a href="#">Gastos</a></li>
+                    <li><a href="#">Resumen financiero</a></li>
+                    <li><a href="#">Configuración</a></li>
+                    <li><a href="#">Acerca de</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Principal -->
+        <main class="dashboard">
+            <section class="cards">
+                <div class="card">
+                    <h2>Valor Inventario</h2>
+                    <p>$0</p>
+                </div>
+                <div class="card">
+                    <h2>Ingresos Totales</h2>
+                    <p>$0</p>
+                </div>
+                <div class="card">
+                    <h2>Gastos Totales</h2>
+                    <p>$0</p>
+                </div>
+                <div class="card">
+                    <h2>Balance total</h2>
+                    <p>$0</p>
+                </div>
+                <div class="card">
+                    <h2>Productos en Inventario</h2>
+                    <p>0</p>
+                </div>
+                <div class="card">
+                    <h2>Productos Vendidos</h2>
+                    <p>0</p>
+                </div>
+            </section>
+
+            <section class="movimientos">
+                <h2>Últimos Movimientos</h2>
+                <ul id="listaMovimientos" class="lista-movimientos"></ul>
+                <p id="mensajeVacioMovimientos">No hay movimientos registrados</p>
+            </section>
+        </main>
+
+        <!-- Productos -->
+        <section class="productos oculto">
+            <header class="productos-header">
+                <h2>Productos</h2>
+                <button id="btnAgregarProducto" class="btn-primary">+ Agregar producto</button>
+            </header>
+
+            <div class="filtros">
+                <input type="text" id="buscarProducto" placeholder="Buscar producto...">
+                <select id="filtroCategoria">
+                    <option value="">Todos</option>
+                    <option value="alimentos">Alimentos</option>
+                    <option value="electronicos">Electronicos</option>
+                    <option value="ropa">Ropa</option>
+                    <option value="decoraciones">Decoraciones</option>
+                    <option value="otros">Otros</option>
+                </select>
+                <label>
+                    <input type="checkbox" id="filtroStock"> Solo con stock
+                </label>
+            </div>
+
+            <ul id="listaProductos" class="lista-productos"></ul>
+            <p id="mensajeVacioProductos" class="mensaje-vacio">
+                No hay productos registrados aún.
+            </p>
+        </section>
+
+        <!-- Modal Agregar/Editar -->
+        <div id="modalProducto" class="modal oculto">
+            <div class="modal-content">
+                <h3 id="modalTitulo">Agregar producto</h3>
+                <form id="formProducto">
+                    <div class="form-group">
+                        <label for="nombreProducto">Nombre:</label>
+                        <input type="text" id="nombreProducto" placeholder="Ingresa el nombre del producto" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="precioProducto">Precio de adquisición:</label>
+                        <input type="number" id="precioProducto" placeholder="Ingresa el precio de adquisición" min="0"
+                            step="0.01" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="stockProducto">Stock:</label>
+                        <input type="number" id="stockProducto" placeholder="Cantidad en stock" min="0" step="1"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="costoProducto">Costo unitario:</label>
+                        <input type="number" id="costoProducto" placeholder="Costo unitario" min="0" step="0.01"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="categoriaProducto">Categoría:</label>
+                        <select id="categoriaProducto">
+                            <option value="alimentos">Alimentos</option>
+                            <option value="electronicos">Electronicos</option>
+                            <option value="ropa">Ropa</option>
+                            <option value="decoraciones">Decoraciones</option>
+                            <option value="otros">Otros</option>
+                        </select>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button type="button" id="btnEliminarProducto" class="btn-eliminar oculto">Eliminar</button>
+                        <button type="submit" class="btn-primary">Guardar</button>
+                        <button type="button" id="btnCerrarModal" class="btn-secondary">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal confirmar eliminar -->
+        <div id="modalConfirmacion" class="modal oculto">
+            <div class="modal-content">
+                <h3>¿Eliminar producto?</h3>
+                <p id="txtConfirmacion" class="texto-confirmacion">Esta acción no se puede deshacer.</p>
+                <div class="modal-actions">
+                    <button id="btnConfirmarEliminar" class="btn-eliminar">Eliminar</button>
+                    <button id="btnCancelarEliminar" class="btn-secondary">Cancelar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ventas -->
+        <section class="ventas oculto">
+            <header class="ventas-header">
+                <h2>Ventas</h2>
+                <button id="btnAgregarVenta" class="btn-primary">+ Registrar venta</button>
+            </header>
+
+            <div class="filtros">
+                <input type="text" id="buscarVenta" placeholder="Buscar producto...">
+                <select id="filtroFecha">
+                    <option value="">Todas las fechas</option>
+                    <option value="hoy">Hoy</option>
+                    <option value="semana">Última semana</option>
+                    <option value="mes">Último mes</option>
+                </select>
+            </div>
+
+            <ul id="listaVentas" class="lista-ventas"></ul>
+            <p id="mensajeVacioVentas" class="mensaje-vacio">
+                No hay ventas registradas aún.
+            </p>
+        </section>
+
+        <!-- Modal Registrar Venta -->
+        <div id="modalVenta" class="modal oculto">
+            <div class="modal-content">
+                <h3 id="modalTituloVenta">Registrar venta</h3>
+                <form id="formVenta">
+                    <div class="form-group">
+                        <label for="productoVenta">Producto:</label>
+                        <input list="productosRegistrados" id="productoVenta" placeholder="Ingresa el producto..."
+                            required>
+                        <datalist id="productosRegistrados">
+                            <!-- Los productos se cargarán dinamicamente -->
+                        </datalist>
+                    </div>
+
+                    <!-- Cantidad -->
+                    <div class="form-group">
+                        <label for="cantidadVenta">cantidad:</label>
+                        <input type="number" id="cantidadVenta" min="1" step="1" required placeholder="Ej. 3">
+                    </div>
+
+                    <!-- Botones -->
+                    <div class="form-group">
+                        <button type="sumbit" class="btn-primary">Guardar</button>
+                        <button type="button" id="btnCerrarModalVenta" class="btn-secondary">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Gastos -->
+        <section class="gastos oculto">
+            <hader class="gastos-header">
+                <h2>Gastos</h2>
+                <button id="btnAgregarGasto" class="btn-primary">+ Registrar gasto</button>
+            </hader>
+
+            <div class="filtros">
+                <input type="text" id="buscarGasto" placeholder="Buscar gasto...">
+                <select id="filtroFechaGasto">
+                    <option value="">Todos</option>
+                    <option value="hoy">Hoy</option>
+                    <option value="semana">Última semana</option>
+                    <option value="mes">Último mes</option>
+                </select>
+            </div>
+
+            <ul id="listaGastos" class="lista-gastos"></ul>
+            <p id="mensajeVacioGastos" class="mensaje-vacio">
+                No hay gastos registrados aún.
+            </p>
+        </section>
+
+        <!-- Modal Registrar Gasto -->
+        <div id="modalGasto" class="modal oculto">
+            <div class="modal-content">
+                <h3 id="modalTituloGasto">Registrar gasto</h3>
+                <form id="formGasto">
+                    <!-- Concepto -->
+                    <div class="form-group">
+                        <label for="conceptoGasto">Concepto:</label>
+                        <input type="text" id="conceptoGasto" placeholder="Ej. Compra de insumos" required>
+                    </div>
+
+                    <!-- Monto -->
+                    <div class="form-group">
+                        <label for="montoGasto">Monto:</label>
+                        <input type="number" id="montoGasto" min="0" step="0.01" required placeholder="Ej. 500.00">
+                    </div>
+
+                    <!-- Botones -->
+                    <div class="modal-actions">
+                        <button type="sumbit" class="btn-primary">Guardar</button>
+                        <button type="button" id="btnCerrarModalGasto" class="btn-secondary">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Resumen financiero -->
+        <section class="resumen-financiero oculto">
+            <header class="resumen-header">
+                <h2>Resumen financiero</h2>
+                <div class="filtros">
+                    <select id="filtroPeriodo">
+                        <option value="mes">Último mes</option>
+                        <option value="trimestre">Último trimestre</option>
+                        <option value="anio">Último año</option>
+                    </select>
+                </div>
+            </header>
+
+            <!-- KPIs arriba en el centro -->
+            <div class="kpis">
+                <div class="kpi-card">
+                    <h3>Ingresos</h3>
+                    <p id="kpiIngresos">$0.00</p>
+                </div>
+                <div class="kpi-card">
+                    <h3>Gastos</h3>
+                    <p id="kpiGastos">$0.00</p>
+                </div>
+                <div class="kpi-card">
+                    <h3>Balance</h3>
+                    <p id="kpiBalance">$0.00</p>
+                </div>
+                <div class="kpi-card">
+                    <h3>Margen de ganancia</h3>
+                    <p id="kpiMargen">0%</p>
+                </div>
+                <div class="kpi-card">
+                    <h3>Producto más vendido</h3>
+                    <p id="kpiProducto">N/A</p>
+                </div>
+            </div>
+
+            <!-- Gráfico y tabla juntos -->
+            <div class="contenido-principal">
+                <div class="grafico">
+                    <canvas id="graficoFinanciero"></canvas>
+                </div>
+                <div class="tabla-container">
+                    <table class="tabla-periodos">
+                        <thead>
+                            <tr>
+                                <th>Periodo</th>
+                                <th>Ingresos</th>
+                                <th>Gastos</th>
+                                <th>Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaPeriodosBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Configuracion -->
+        <section class="configuracion oculto">
+            <header class="config-header">
+                <h2>Configuración</h2>
+            </header>
+
+            <!-- Exportar e Importar -->
+            <div class="acciones-datos">
+                <!-- Exportar -->
+                <section class="exportar">
+                    <header class="section-header">
+                        <h2>Exportar datos</h2>
+                    </header>
+                    <p class="mensaje-exportar">
+                        Asegúrate de exportar los datos cada cierto tiempo o después de cambios importantes
+                        para evitar pérdidas y mantener un respaldo seguro.
+                    </p>
+                    <button class="btn-exportar">Exportar</button>
+                </section>
+
+                <!-- Importar -->
+                <section class="importar">
+                    <header class="section-header">
+                        <h2>Importar datos</h2>
+                    </header>
+                    <p class="mensaje-importar">
+                        Selecciona un archivo JSON previamente exportado para restaurar tus clientes y movimientos.
+                        Esto te permite continuar donde lo dejaste sin perder información.
+                    </p>
+                    <input type="file" id="fileImport" accept=".json" class="input-importar">
+                    <button class="btn-importar">Importar</button>
+                </section>
+            </div>
+
+            <!-- General debajo -->
+            <section class="general-config contenido">
+                <header class="section-header">
+                    <h2>General</h2>
+                </header>
+                <div class="opcion">
+                    <label for="modoVisual">Modo visual:</label>
+                    <button id="btnDarkMode">Claro / Oscuro</button>
+                </div>
+                <div class="opcion">
+                    <label for="moneda">Moneda predeterminada:</label>
+                    <select id="moneda">
+                        <option value="MXN">MXN</option>
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                    </select>
+                </div>
+                <div class="opcion">
+                    <label for="formato">Formato de moneda:</label>
+                    <select id="formato">
+                        <option value="es-MX">12,000.00 (MX)</option>
+                        <option value="en-US">$12,000.00 (US)</option>
+                        <option value="de-DE">12.000,00 € (DE)</option>
+                    </select>
+                </div>
+            </section>
+        </section>
+
+        <!-- Acerca de -->
+        <section class="acerca-de oculto">
+            <header class="acerca-header">
+                <h2>Acerca de</h2>
+            </header>
+
+            <p>
+                Esta aplicación fue diseñada para facilitar la gestión de inventario, ventas y gastos de manera sencilla
+                y organizada.
+                Su objetivo es brindar una visión clara del estado financiero y del movimiento de productos.
+            </p>
+
+            <h3>Funcionamiento</h3>
+            <ul>
+                <li>
+                    <strong>Panel principal:</strong> muestra métricas clave como valor del inventario, ingresos,
+                    gastos, balance, productos vendidos y una lista con los últimos veinte movimientos realizados en la
+                    app.
+                    <p class="aclaracion">El valor del inventario representa cuánto valen los productos que tienes
+                        almacenados. El balance total es la diferencia entre ingresos y gastos: positivo si has vendido más de lo
+                        que has gastado, negativo si ocurre lo contrario.</p>
+                </li>
+
+                <li>
+                    <strong>Productos:</strong> permite agregar, editar y eliminar productos, además de filtrarlos por
+                    categoría o stock.
+                    <p class="aclaracion">El <strong>precio de adquisición</strong> es lo que pagaste al comprar la
+                        mercancía (ej. $300 por una caja de chocolates).
+                        El <strong>costo unitario</strong> es el valor al que vendes cada unidad (ej. $16 por cada
+                        chocolate).
+                        Ambos datos son importantes: el precio de adquisición se registra como gasto, y el costo
+                        unitario se usa para calcular ingresos y valor del inventario.</p>
+                </li>
+
+                <li>
+                    <strong>Ventas:</strong> registra las ventas y descuenta automáticamente la cantidad del stock.
+                    <p class="aclaracion">No necesitas ingresar el precio unitario al vender, porque la aplicación ya lo
+                        tiene guardado en cada producto. Solo indicas la cantidad vendida y el sistema calcula el total.
+                    </p>
+                </li>
+
+                <li>
+                    <strong>Gastos:</strong> registra tanto compras de productos como gastos generales (ej. renta,
+                    servicios).
+                    <p class="aclaracion">Los gastos afectan directamente al balance y ayudan a tener una visión más
+                        completa de la situación financiera.</p>
+                </li>
+
+                <li>
+                    <strong>Resumen financiero:</strong> presenta KPIs, gráficos y tablas comparativas de ingresos,
+                    gastos y balance.
+                    <p class="aclaracion">El margen de ganancia se calcula comparando ingresos y costos, mostrando el
+                        porcentaje de beneficio real. Los gráficos y tablas son representaciones visuales para entender
+                        mejor los datos.</p>
+                </li>
+
+                <li>
+                    <strong>Configuración:</strong> ofrece opciones para <strong>exportar/importar</strong> datos y
+                    ajustar preferencias.
+                    <p class="aclaracion">Las fechas se muestran según la configuración de tu equipo, para que siempre
+                        las veas en el estilo que te resulta familiar.</p>
+                </li>
+            </ul>
+
+            <h3>Aclaraciones</h3>
+            <p class="advertencia">
+                Los datos se almacenan únicamente en el navegador mediante <strong>localStorage</strong>.
+                Esto significa que pueden perderse si:
+            </p>
+            <ul class="advertencia">
+                <li>Se borra la caché o el almacenamiento local.</li>
+                <li>Se usa la aplicación en otro dispositivo o navegador distinto.</li>
+                <li>Se reinstala o actualiza el navegador con limpieza de datos.</li>
+            </ul>
+            <p class="advertencia">
+                El desarrollador no se hace responsable por la pérdida de información.
+                Se recomienda exportar los datos periódicamente como respaldo.
+            </p>
+
+            <div class="creditos">
+                <p>Desarrollado por <strong>Mario Alberto Melgarejo Villaseñor</strong></p>
+            </div>
+        </section>
+
+        <!-- Mensajes -->
+        <div id="notificaciones" class="notificaciones"></div>
+
+        <script src="libs/chart.umd.min.js"></script>
+        <script type="module" src="app.js"></script>
+        <script>
+            if("serviceWorker" in navigator){
+                navigator.serviceWorker.register("./sw.js")
+                .then(() => console.log("Service Worker registrado"))
+                .catch((err) => console.err("Error al registrar SW", err));
+            }
+        </script>
+</body>
+
+</html>
