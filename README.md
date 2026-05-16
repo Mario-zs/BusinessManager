@@ -177,17 +177,22 @@ Puedes probar la aplicación aquí:
 ### Capturas de pantalla
 
 #### Dashboard principal
-![Dashboard](/screenshots/dashboard.png)
+![Dashboard principal](./screenshots/dashboard.png)
 
 #### Productos
+![Panel productos](./screenshots/productos.png)
 
 #### Ventas
+![Panel ventas](./screenshots/ventas.png)
 
 #### Gastos
+![Panel gastos](./screenshots/gastos.png)
 
 #### Resumen financiero
+![Panel Resumen financiero](./screenshots/resumen-financiero.png)
 
 #### Configuración
+![Panel configuración](./screenshots/configuracion.png)
 
 ---
 

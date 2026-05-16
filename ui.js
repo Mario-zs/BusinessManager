@@ -74,6 +74,7 @@ export function mostrarAcercaDe() {
 // Mostrar modal producto
 export function mostrarModalProducto() {
     document.getElementById("modalProducto").classList.remove("oculto");
+    document.getElementById("nombreProducto").focus();
 }
 
 // Cerrar modal producto
@@ -84,6 +85,7 @@ export function cerrarModalProducto() {
 // Mostrar modal venta
 export function mostrarModalVenta() {
     document.getElementById("modalVenta").classList.remove("oculto");
+    document.getElementById("productoVenta").focus();
 }
 
 // Cerrar modal venta
@@ -95,6 +97,7 @@ export function cerrarModalVenta() {
 // Mostrar modal gasto
 export function mostrarModalGasto() {
     document.getElementById("modalGasto").classList.remove("oculto");
+    document.getElementById("conceptoGasto").focus();
 }
 
 // Cerrar modal gasto
