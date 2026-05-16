@@ -1,4 +1,4 @@
-const CACHE_NAME = "businessmanager-v2";
+const CACHE_NAME = "businessmanager-v3";
 
 const urlsToCache = [
     "./",

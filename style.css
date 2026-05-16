@@ -996,11 +996,6 @@ body.dark-mode ::-webkit-scrollbar-thumb:hover {
         z-index: 1500;
     }
 
-    /* Dashboard */
-    .dashboard {
-        margin-top: 70px;
-    }
-
     /* Header */
     .header {
         position: fixed;
@@ -1012,6 +1007,10 @@ body.dark-mode ::-webkit-scrollbar-thumb:hover {
 
     .header-left h1 {
         font-size: 1.1rem;
+    }
+
+    .layout {
+        padding-top: 70px;
     }
 
     /* Cards */
