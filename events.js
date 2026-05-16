@@ -1,4 +1,4 @@
-import { toogleMenu } from "./ui.js";
+import { toogleMenu, cerrarMenu } from "./ui.js";
 import { mostrarPrincipal, mostrarProductos, mostrarVentas, mostrarGastos, mostrarResumenFinanciero, mostrarConfiguracion, mostrarAcercaDe } from "./ui.js"
 import { mostrarModalProducto, cerrarModalProducto } from "./ui.js";
 import { mostrarModalVenta, cerrarModalVenta } from "./ui.js";
@@ -32,30 +32,37 @@ export function showMenuWindows() {
             switch (option) {
                 case "Principal":
                     mostrarPrincipal();
+                    cerrarMenu();
                     break;
 
                 case "Productos":
                     mostrarProductos();
+                    cerrarMenu();
                     break;
 
                 case "Ventas":
                     mostrarVentas();
+                    cerrarMenu();
                     break;
 
                 case "Gastos":
                     mostrarGastos();
+                    cerrarMenu();
                     break;
 
                 case "Resumen financiero":
                     mostrarResumenFinanciero();
+                    cerrarMenu();
                     break;
 
                 case "Configuración":
                     mostrarConfiguracion();
+                    cerrarMenu();
                     break;
 
                 case "Acerca de":
                     mostrarAcercaDe();
+                    cerrarMenu();
                     break;
             }
         });

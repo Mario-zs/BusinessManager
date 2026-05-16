@@ -1,4 +1,9 @@
-html, body {
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
     height: 100%;
     margin: 0;
     padding: 0;
@@ -47,7 +52,7 @@ body {
     background: white;
     padding: 1rem;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
@@ -61,7 +66,7 @@ body {
     background: white;
     padding: 1rem;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .movimientos h2 {
@@ -96,8 +101,6 @@ body {
 .layout {
     display: flex;
     flex: 1;
-    min-height: 0;
-    transition: all 0.3s ease;
 }
 
 /* sidebar cerrado */
@@ -133,7 +136,7 @@ body {
 }
 
 .sidebar nav ul li a:hover {
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
 }
 
 .dashboard {
@@ -148,7 +151,8 @@ body {
     padding: 20px;
     background: #fafafa;
     border-radius: 8px;
-    width: 100%;       /* ocupa todo el ancho */
+    width: 100%;
+    /* ocupa todo el ancho */
     border: 1px solid #ccc;
 }
 
@@ -186,7 +190,8 @@ body {
     margin-bottom: 1.5rem;
 }
 
-.filtros input, .filtros select {
+.filtros input,
+.filtros select {
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -196,8 +201,10 @@ body {
     list-style: none;
     padding: 0;
     margin: 0;
-    max-height: 400px;   /* altura máxima del contenedor */
-    overflow-y: auto;    /* scroll vertical si se excede */
+    max-height: 400px;
+    /* altura máxima del contenedor */
+    overflow-y: auto;
+    /* scroll vertical si se excede */
     border: 1px solid #ddd;
     border-radius: 6px;
     background: white;
@@ -221,9 +228,11 @@ body {
 
 .modal {
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.5);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -232,11 +241,11 @@ body {
 
 .modal-content {
     background: white;
-    padding: 2rem; /* un poco más de aire */
+    padding: 2rem;
     border-radius: 8px;
-    width: 420px;  /* ligeramente más ancho */
+    width: 420px;
     max-width: 95%;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -259,11 +268,11 @@ body {
 
 .form-group input,
 .form-group select {
-    width: calc(100% - 0.5rem); /* resta un poco para que no choque con el borde */
+    width: calc(100% - 0.5rem);
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box; /* asegura que el padding y border se incluyan en el ancho */
+    box-sizing: border-box;
 }
 
 
@@ -337,7 +346,8 @@ body {
     margin-bottom: 1.5rem;
 }
 
-.filtros input, .filtros select {
+.filtros input,
+.filtros select {
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -347,7 +357,8 @@ body {
     list-style: none;
     padding: 0;
     margin: 0;
-    max-height: 400px;   /* contenedor con scroll */
+    max-height: 400px;
+    /* contenedor con scroll */
     overflow-y: auto;
     border: 1px solid #ddd;
     border-radius: 6px;
@@ -457,14 +468,13 @@ body {
 }
 
 .resumen-financiero {
-    max-width: 1600px;   /* más ancho */
-    width: 95%;          /* ocupa casi toda la pantalla */
+    max-width: 1600px;
+    width: 95%;
     margin: 0 auto;
     padding: 20px;
     background: #fdfdfd;
     border-radius: 10px;
     border: 1px solid #ccc;
-    overflow: hidden;
 }
 
 .resumen-header {
@@ -476,7 +486,8 @@ body {
 
 .kpis {
     display: flex;
-    justify-content: center; /* centradas */
+    justify-content: center;
+    /* KPIs centradas */
     gap: 1rem;
     margin-bottom: 2rem;
     flex-wrap: wrap;
@@ -490,7 +501,7 @@ body {
     border-radius: 8px;
     padding: 1rem;
     text-align: center;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .kpi-card h3 {
@@ -509,10 +520,11 @@ body {
 .contenido-principal {
     display: flex;
     gap: 2rem;
-    align-items: stretch; /* ambos bloques igual altura */
+    align-items: stretch;
 }
 
-.grafico, .tabla-container {
+.grafico,
+.tabla-container {
     flex: 1;
     background: white;
     border: 1px solid #ddd;
@@ -523,13 +535,14 @@ body {
 .grafico {
     flex: 1;
     min-height: 400px;
-    max-height: 400px;   /* límite superior */
-    overflow: hidden;    /* evita que se desborde */
+    max-height: 400px;
+    overflow: hidden;
 }
 
 
 .tabla-container {
-    max-height: 400px;   /* scroll interno */
+    max-height: 400px;
+    /* scroll interno */
     overflow-y: auto;
 }
 
@@ -538,7 +551,8 @@ body {
     border-collapse: collapse;
 }
 
-.tabla-periodos th, .tabla-periodos td {
+.tabla-periodos th,
+.tabla-periodos td {
     padding: 0.8rem;
     border: 1px solid #ddd;
     text-align: center;
@@ -548,11 +562,13 @@ body {
     display: flex;
     gap: 2rem;
     justify-content: center;
-    flex-wrap: wrap; /* en pantallas pequeñas se apilan */
+    flex-wrap: wrap;
+    /* en pantallas pequeñas se apilan */
     margin-bottom: 2rem;
 }
 
-.exportar, .importar {
+.exportar,
+.importar {
     flex: 1;
     min-width: 280px;
     padding: 20px;
@@ -562,13 +578,15 @@ body {
     text-align: center;
 }
 
-.exportar h2, .importar h2 {
+.exportar h2,
+.importar h2 {
     font-size: 22px;
     color: #333;
     margin-bottom: 15px;
 }
 
-.mensaje-exportar, .mensaje-importar {
+.mensaje-exportar,
+.mensaje-importar {
     font-size: 15px;
     color: #555;
     margin-bottom: 20px;
@@ -586,7 +604,8 @@ body {
     border-left: 4px solid #28a745;
 }
 
-.btn-exportar, .btn-importar {
+.btn-exportar,
+.btn-importar {
     padding: 10px 20px;
     font-size: 16px;
     color: white;
@@ -627,7 +646,7 @@ body {
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 1.5rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .general-config h2 {
@@ -653,7 +672,6 @@ body {
     flex: 1;
 }
 
-/* Botón toggle modo oscuro */
 .btn-toggle {
     padding: 8px 16px;
     font-size: 15px;
@@ -669,7 +687,6 @@ body {
     background: #5a6268;
 }
 
-/* Selects estilizados */
 .select-config {
     flex: 1;
     padding: 8px;
@@ -686,45 +703,46 @@ body {
 }
 
 .acerca-de {
-  padding: 20px;
-  background: #f9f9f9;
-  color: #333;
-  border-radius: 8px;
-  max-width: 900px;
-  margin: 20px auto;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  max-height: 600px;
-  overflow-y: auto;
+    padding: 20px;
+    background: #f9f9f9;
+    color: #333;
+    border-radius: 8px;
+    max-width: 900px;
+    margin: 20px auto;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    max-height: 600px;
+    overflow-y: auto;
 }
 
 .acerca-de h2 {
-  color: #007bff;
-  margin-bottom: 10px;
+    color: #007bff;
+    margin-bottom: 10px;
 }
 
 .acerca-de h3 {
-  margin-top: 20px;
-  color: #2f3640;
+    margin-top: 20px;
+    color: #2f3640;
 }
 
 .acerca-de ul {
-  margin: 10px 0 20px 20px;
+    margin: 10px 0 20px 20px;
 }
 
 .acerca-de p {
-  line-height: 1.6;
+    line-height: 1.6;
 }
 
 .advertencia {
-  color: #b22222; /* rojo oscuro */
-  font-weight: 500;
+    color: #b22222;
+    /* rojo oscuro */
+    font-weight: 500;
 }
 
 .creditos {
-  margin-top: 30px;
-  text-align: right;
-  font-style: italic;
-  color: #555;
+    margin-top: 30px;
+    text-align: right;
+    font-style: italic;
+    color: #555;
 }
 
 .notificaciones {
@@ -736,7 +754,7 @@ body {
     color: white;
     padding: 12px 18px;
     border-radius: 6px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     display: none;
     font-size: 15px;
     z-index: 2000;
@@ -755,11 +773,28 @@ body {
     color: #333;
 }
 
+.resumen-financiero,
+.dashboard,
+.productos,
+.ventas,
+.gastos,
+.configuracion,
+.acerca-de {
+    box-sizing: border-box;
+}
+
 /* Aplica a todas las secciones que actúan como contenido principal */
-.dashboard, .productos, .ventas, .gastos, .resumen-financiero, .configuracion {
-    flex: 1; 
-    min-width: 0; /* Permite que el contenido se ajuste correctamente */
-    overflow-x: hidden; /* Evita scrolls horizontales inesperados */
+.dashboard,
+.productos,
+.ventas,
+.gastos,
+.resumen-financiero,
+.configuracion {
+    flex: 1;
+    min-width: 0;
+    /* Permite que el contenido se ajuste correctamente */
+    overflow-x: hidden;
+    /* Evita scrolls horizontales inesperados */
 }
 
 .oculto {
@@ -791,7 +826,7 @@ body.dark-mode .sidebar nav ul li a {
 }
 
 body.dark-mode .sidebar nav ul li a:hover {
-    background: rgba(255,255,255,0.08);
+    background: rgba(255, 255, 255, 0.08);
 }
 
 body.dark-mode .dashboard,
@@ -817,7 +852,7 @@ body.dark-mode .general-config {
     background: #202020;
     color: #e4e4e4;
     border: 1px solid #333;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 body.dark-mode h1,
@@ -925,7 +960,7 @@ body.dark-mode .btn-eliminar:hover {
 }
 
 body.dark-mode .notificaciones {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 body.dark-mode ::-webkit-scrollbar {
@@ -939,4 +974,136 @@ body.dark-mode ::-webkit-scrollbar-thumb {
 
 body.dark-mode ::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+/* =========================
+   RESPONSIVE MOVIL
+========================= */
+@media (max-width: 768px) {
+
+    /* Sidebar */
+    .sidebar {
+        overflow-y: auto;
+        transition: none;
+    }
+
+    .sidebar.visible {
+        width: 200px;
+        position: fixed;
+        top: 64px;
+        left: 0;
+        height: calc(100vh - 64px);
+        z-index: 1500;
+    }
+
+    /* Dashboard */
+    .dashboard {
+        margin-top: 70px;
+    }
+
+    /* Header */
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 2000;
+    }
+
+    .header-left h1 {
+        font-size: 1.1rem;
+    }
+
+    /* Cards */
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    /* Filtros */
+    .filtros {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filtros input,
+    .filtros select {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Headers de secciones */
+    .productos-header,
+    .ventas-header,
+    .gastos-header,
+    .resumen-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    /* KPIs */
+    .kpis {
+        flex-direction: column;
+    }
+
+    .kpi-card {
+        min-width: unset;
+    }
+
+    /* RESUMEN FINANCIERO */
+    .contenido-principal {
+        flex-direction: column;
+    }
+
+    .grafico {
+        min-height: 300px;
+        max-height: 300px;
+    }
+
+    .grafico canvas {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    .tabla-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .tabla-periodos {
+        min-width: 500px;
+    }
+
+    /* IMPORTANTE */
+    .resumen-financiero {
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+    }
+
+    /* Modales */
+    .modal-content {
+        width: 90%;
+        padding: 1rem;
+    }
+
+    .modal-actions {
+        flex-direction: column;
+    }
+
+    .modal-actions button {
+        width: 100%;
+    }
+
+    /* Configuración */
+    .opcion {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+    }
+
+    /* Acerca de */
+    .acerca-de {
+        max-height: unset;
+    }
 }

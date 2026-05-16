@@ -13,9 +13,13 @@ export function ocultarTodo() {
     document.querySelector(".acerca-de").classList.add("oculto");
 }
 
-// Mostrar ocultar menu
+// Mostrar menu
 export function toogleMenu() {
     document.querySelector(".sidebar").classList.toggle("visible");
+}
+
+export function cerrarMenu(){
+    document.querySelector(".sidebar").classList.remove("visible");
 }
 
 // Mostrar el panel de menu principal
